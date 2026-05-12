@@ -1,0 +1,16 @@
+numpy
+math
+scipy
+matplotlib
+seaborn
+scikit-learn
+transformers
+datasets
+torch
+tqdm
+jupyter
+umap-learn
+sentencepiece
+unicodedata
+collections
+metrics
