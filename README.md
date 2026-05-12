@@ -41,7 +41,7 @@ A language model does not see characters. It sees **BPE tokens** — subword uni
 We repeat the entire pipeline from Act 1 at the token level, using the XLM-R tokenizer, and introduce a new metric: **tokenizer fertility** — the average number of tokens per word.
 
 <p align="center">
-  <img src="data/results/fertility.png" width="600"/>
+  <img src="DATA/results/fertility.png" width="600"/>
 </p>
 
 Fertility is not uniform across languages. Some languages are tokenized efficiently (most words map to a single token); others are systematically fragmented. This asymmetry is structural — it is baked into the tokenizer before any model training happens, and it is already a form of bias.
@@ -49,7 +49,7 @@ Fertility is not uniform across languages. Some languages are tokenized efficien
 We then recompute distance matrices and MDS projections at the token level, and compare them to the character-level results. The language family structure largely survives tokenization, but the geometry shifts — the tokenizer introduces its own distortions on top of the linguistic signal.
 
 <p align="center">
-  <img src="data/results/token_mds_hellinger.png" width="500"/>
+  <img src="DATA/results/token_mds_hellinger.png" width="500"/>
 </p>
 
 `notebooks/02_from_characters_to_tokens.ipynb`
@@ -63,7 +63,7 @@ We now extract language representations from XLM-R using **parallel sentences** 
 For each language, we pass parallel sentences through XLM-R, extract sentence embeddings via mean pooling, and average them into a single language vector. We then compute pairwise cosine distances between these vectors.
 
 <p align="center">
-  <img src="data/results/embedding_mds.png" width="500"/>
+  <img src="DATA/results/embedding_mds.png" width="500"/>
 </p>
 
 Language family structure is visible in XLM-R's embedding space — Romance languages cluster together, Germanic languages occupy a separate region, Polish remains isolated. The absolute distances are small (order of 0.001–0.003), reflecting XLM-R's design as a shared multilingual space, but the structure is real.
@@ -71,7 +71,7 @@ Language family structure is visible in XLM-R's embedding space — Romance lang
 We then run **Mantel tests** — the standard method for correlating two distance matrices — between our statistical distance matrices (from Acts 1 and 2) and the embedding distance matrix.
 
 <p align="center">
-  <img src="data/results/mantel_summary.png" width="600"/>
+  <img src="DATA/results/mantel_summary.png" width="600"/>
 </p>
 
 **Results:**
