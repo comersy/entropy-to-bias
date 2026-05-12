@@ -16,14 +16,14 @@ We test this hypothesis in three steps.
 
 ---
 
-## Act 1 — Languages as distributions
+## Languages as distributions
 
 We treat each language as a probability distribution over characters. Using one reference text per language (literary works from Project Gutenberg), we compute character frequency distributions and measure pairwise distances using three metrics: KL divergence, Hellinger distance, and Bhattacharyya distance.
 
 The result: **language family structure emerges from raw statistics alone**, with no linguistic knowledge injected.
 
 <p align="center">
-  <img src="data/results/char_mds_kl_divergence_1.png" width="500"/>
+  <img src="DATA/results/char_mds_kl_divergence_1.png" width="500"/>
 </p>
 
 Romance languages (French, Italian, Spanish, Portuguese) cluster tightly. Germanic languages (English, German, Dutch) form a separate group. Polish stands alone — the only Slavic language in our dataset, and consistently the most distant from all others.
@@ -34,7 +34,7 @@ We then benchmark language detection: given a short extract of ~200 characters, 
 
 ---
 
-## Act 2 — From characters to tokens
+## From characters to tokens
 
 A language model does not see characters. It sees **BPE tokens** — subword units produced by a tokenizer trained on a large multilingual corpus. The tokenizer itself is a statistical object: it was built by merging frequent character pairs, and its vocabulary reflects the distribution of subwords across all the languages it was trained on.
 
@@ -56,7 +56,7 @@ We then recompute distance matrices and MDS projections at the token level, and 
 
 ---
 
-## Act 3 — Predicting LLM bias
+## Predicting LLM bias
 
 We now extract language representations from XLM-R using **parallel sentences** from the opus-100 corpus (Helsinki-NLP). By holding content constant across languages, any variation in embedding space must come from the language itself.
 
@@ -104,43 +104,6 @@ This does not mean statistical distance is the only driver. Training data volume
 ## Languages
 
 French, English, German, Spanish, Italian, Dutch, Portuguese, Polish — spanning Romance, Germanic, and Slavic families, chosen to be close enough to make statistical differences subtle, far enough to expect meaningful variation.
-
----
-
-## Repository structure
-
-```
-entropy-to-bias/
-│
-├── data/
-│   ├── Books/          ← reference texts (Project Gutenberg)
-│   └── results/        ← saved figures
-│
-├── languages-distributions/
-│   ├── text_loader.py
-│   ├── frequencies.py
-│   ├── metrics.py
-│   ├── distance_matrix.py
-│   ├── detection.py
-│   └── viz_characters.py
-│
-├── token-geometry/
-│   ├── text_loader.py
-│   ├── token_frequencies.py
-│   ├── fertility.py
-│   └── viz_tokens.py
-│
-├── llm-bias/
-│   ├── flores_loader.py
-│   ├── embeddings.py
-│   ├── mantel.py
-│   └── viz_bias.py
-│
-└── notebooks/
-    ├── 01_languages_as_distributions.ipynb
-    ├── 02_from_characters_to_tokens.ipynb
-    └── 03_predicting_llm_bias.ipynb
-```
 
 ---
 
