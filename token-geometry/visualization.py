@@ -18,4 +18,5 @@ def plot_fertility(fertility_scores: dict) -> None:
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
+    plt.savefig('../data/results/fertility.png', dpi=150, bbox_inches='tight')
     plt.show()

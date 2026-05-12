@@ -38,6 +38,7 @@ def plot_embedding_matrix(languages: list, matrix: np.ndarray) -> None:
     ax.tick_params(axis='x', rotation=45, labelsize=9)
     ax.tick_params(axis='y', rotation=0, labelsize=9)
     plt.tight_layout()
+    plt.savefig('../data/results/embedding_matrix.png', dpi=150, bbox_inches='tight')
     plt.show()
 
 
@@ -62,6 +63,7 @@ def plot_embedding_mds(languages: list, matrix: np.ndarray) -> None:
     ax.legend(handles=legend_elements, fontsize=9)
     ax.axis('off')
     plt.tight_layout()
+    plt.savefig('../data/results/embedding_mds.png', dpi=150, bbox_inches='tight')
     plt.show()
 
 
@@ -80,6 +82,7 @@ def plot_mantel_distribution(observed_r: float, permuted_rs: np.ndarray,
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
+    plt.savefig(f'../data/results/mantel_{name1.lower().replace(" ", "_")}.png', dpi=150, bbox_inches='tight')
     plt.show()
 
 
@@ -106,4 +109,5 @@ def plot_mantel_summary(results: dict) -> None:
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
+    plt.savefig('../data/results/mantel_summary.png', dpi=150, bbox_inches='tight')
     plt.show()
