@@ -5,6 +5,7 @@ def load_texts(data_dir: str) -> dict:
     Load all .txt files from a directory.
     Returns a dict {language_name: text} where language_name
     is the filename without extension.
+    No uppercasing — preserving original case for tokenization.
     """
     texts = {}
     for filename in os.listdir(data_dir):
@@ -14,6 +15,5 @@ def load_texts(data_dir: str) -> dict:
             with open(filepath, 'r', encoding='utf-8') as f:
                 text = f.read()
                 text = text.replace('\n', ' ')
-                text = text.upper()
             texts[language] = text
     return texts
